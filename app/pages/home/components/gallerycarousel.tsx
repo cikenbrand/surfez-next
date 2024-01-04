@@ -1,0 +1,85 @@
+import { useState, useCallback, useEffect } from "react";
+import { flushSync } from "react-dom";
+import useEmblaCarousel, { EmblaOptionsType } from 'embla-carousel-react';
+import './styles/emblagallerycarousel.css';
+
+const images: string[] = ['/images/image01.png', '/images/image02.png', '/images/image03.png', '/images/image04.png']
+
+const imageByIndex = (index: number): string => images[index % images.length]
+
+const TWEEN_FACTOR = 1.2
+
+type EmblaCarouselProps = {
+  slides: number[]
+  options?: EmblaOptionsType
+}
+
+const EmblaCarousel: React.FC<EmblaCarouselProps> = (props) => {
+  const { slides, options } = props
+  const [emblaRef, emblaApi] = useEmblaCarousel(options)
+  const [tweenValues, setTweenValues] = useState<number[]>([])
+
+  const onScroll = useCallback(() => {
+    if (!emblaApi) return
+
+    const engine = emblaApi.internalEngine()
+    const scrollProgress = emblaApi.scrollProgress()
+
+    const styles = emblaApi.scrollSnapList().map((scrollSnap, index) => {
+      let diffToTarget = scrollSnap - scrollProgress
+
+      if (engine.options.loop) {
+        engine.slideLooper.loopPoints.forEach((loopItem) => {
+          const target = loopItem.target()
+          if (index === loopItem.index && target !== 0) {
+            const sign = Math.sign(target)
+            if (sign === -1) diffToTarget = scrollSnap - (1 + scrollProgress)
+            if (sign === 1) diffToTarget = scrollSnap + (1 - scrollProgress)
+          }
+        })
+      }
+      return diffToTarget * (-1 / TWEEN_FACTOR) * 100
+    })
+    setTweenValues(styles)
+  }, [emblaApi, setTweenValues])
+
+  useEffect(() => {
+    if (!emblaApi) return
+    onScroll()
+    emblaApi.on('scroll', () => {
+      flushSync(() => onScroll())
+    })
+    emblaApi.on('reInit', onScroll)
+  }, [emblaApi, onScroll])
+
+  return (
+    <div className="embla">
+      <div className="embla__viewport" ref={emblaRef}>
+        <div className="embla__container">
+          {Array.isArray(slides) && slides.map((index) => (
+            <div className="embla__slide" key={index}>
+              <div className="embla__parallax">
+                <div
+                  className="embla__parallax__layer"
+                  style={{
+                    ...(tweenValues.length && {
+                      transform: `translateX(${tweenValues[index]}%)`
+                    })
+                  }}
+                >
+                  <img
+                    className="embla__slide__img embla__parallax__img"
+                    src={imageByIndex(index)}
+                    alt={imageByIndex(index)}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default EmblaCarousel;
