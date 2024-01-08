@@ -1,62 +1,64 @@
+'use client';
+
 import { useState, useCallback, useEffect } from "react";
 import { flushSync } from "react-dom";
 import useEmblaCarousel, { EmblaOptionsType } from 'embla-carousel-react';
-import './styles/emblagallerycarousel.css';
+import '@/styles/emblacarousel.css';
 
-const images: string[] = ['/images/image01.png', '/images/image02.png', '/images/image03.png', '/images/image04.png']
+const TWEEN_FACTOR = 1.2;
 
-const imageByIndex = (index: number): string => images[index % images.length]
+type CarouselItemType = {
+  imgSrc: string,
+  imgAlt: string,
+}
 
-const TWEEN_FACTOR = 1.2
-
-type EmblaCarouselProps = {
-  slides: number[]
+interface GalleryCarouselProps {
+  items?: CarouselItemType[],
   options?: EmblaOptionsType
 }
 
-const EmblaCarousel: React.FC<EmblaCarouselProps> = (props) => {
-  const { slides, options } = props
-  const [emblaRef, emblaApi] = useEmblaCarousel(options)
-  const [tweenValues, setTweenValues] = useState<number[]>([])
+const GalleryCarousel: React.FC<GalleryCarouselProps> = ({ items, options }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const [tweenValues, setTweenValues] = useState<number[]>([]);
 
   const onScroll = useCallback(() => {
-    if (!emblaApi) return
+    if (!emblaApi) return;
 
-    const engine = emblaApi.internalEngine()
-    const scrollProgress = emblaApi.scrollProgress()
+    const engine = emblaApi.internalEngine();
+    const scrollProgress = emblaApi.scrollProgress();
 
     const styles = emblaApi.scrollSnapList().map((scrollSnap, index) => {
-      let diffToTarget = scrollSnap - scrollProgress
+      let diffToTarget = scrollSnap - scrollProgress;
 
       if (engine.options.loop) {
         engine.slideLooper.loopPoints.forEach((loopItem) => {
-          const target = loopItem.target()
+          const target = loopItem.target();
           if (index === loopItem.index && target !== 0) {
-            const sign = Math.sign(target)
-            if (sign === -1) diffToTarget = scrollSnap - (1 + scrollProgress)
-            if (sign === 1) diffToTarget = scrollSnap + (1 - scrollProgress)
+            const sign = Math.sign(target);
+            if (sign === -1) diffToTarget = scrollSnap - (1 + scrollProgress);
+            if (sign === 1) diffToTarget = scrollSnap + (1 - scrollProgress);
           }
-        })
+        });
       }
-      return diffToTarget * (-1 / TWEEN_FACTOR) * 100
-    })
-    setTweenValues(styles)
-  }, [emblaApi, setTweenValues])
+      return diffToTarget * (-1 / TWEEN_FACTOR) * 100;
+    });
+    setTweenValues(styles);
+  }, [emblaApi, setTweenValues]);
 
   useEffect(() => {
-    if (!emblaApi) return
-    onScroll()
+    if (!emblaApi) return;
+    onScroll();
     emblaApi.on('scroll', () => {
-      flushSync(() => onScroll())
-    })
-    emblaApi.on('reInit', onScroll)
-  }, [emblaApi, onScroll])
+      flushSync(() => onScroll());
+    });
+    emblaApi.on('reInit', onScroll);
+  }, [emblaApi, onScroll]);
 
   return (
-    <div className="embla">
+    <div className="varianttwo embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {Array.isArray(slides) && slides.map((index) => (
+          {items?.map((item, index) => (
             <div className="embla__slide" key={index}>
               <div className="embla__parallax">
                 <div
@@ -69,8 +71,8 @@ const EmblaCarousel: React.FC<EmblaCarouselProps> = (props) => {
                 >
                   <img
                     className="embla__slide__img embla__parallax__img"
-                    src={imageByIndex(index)}
-                    alt={imageByIndex(index)}
+                    src={item.imgSrc}
+                    alt={item.imgAlt}
                   />
                 </div>
               </div>
@@ -79,7 +81,7 @@ const EmblaCarousel: React.FC<EmblaCarouselProps> = (props) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default EmblaCarousel;
+export default GalleryCarousel;

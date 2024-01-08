@@ -1,25 +1,32 @@
-import React from 'react'
-import useEmblaCarousel, { EmblaOptionsType } from 'embla-carousel-react'
-import Image from 'next/image';
-import { PackagesData, PackagesDataByIndex } from '@/app/data/packagesdata';
+'use client';
 
-type PropType = {
-  slides: number[]
+import { FC } from "react";
+import useEmblaCarousel, { EmblaOptionsType } from 'embla-carousel-react';
+import Image from "next/image";
+import '@/styles/emblacarousel.css';
+
+type CarouselItemType = {
+  title: string,
+  caption: string,
+  imgSrc: string,
+  imgAlt: string
+}
+
+interface FullCarouselProps {
+  items?: CarouselItemType[],
   options?: EmblaOptionsType
 }
 
-const PackagesCarousel: React.FC<PropType> = (props) => {
-  const { slides, options } = props
+const FullCarousel: FC<FullCarouselProps> = ({ items, options }) => {
   const [emblaRef] = useEmblaCarousel(options)
-
-  return (
-    <div 
-      className="package embla w-full h-full" 
-      style={{ 
-        '--slide-size': '90%', 
-        '--slide-height': '100%', 
-        '--slide-spacing': '1rem' } as React.CSSProperties}
-    >
+    return (
+      <div 
+        className="variantone embla w-full h-full" 
+        style={{ 
+          '--slide-size': '90%', 
+          '--slide-height': '100%', 
+          '--slide-spacing': '1rem' } as React.CSSProperties}
+      >
       <div 
         className="w-full h-full overflow-hidden" 
         ref={emblaRef}
@@ -28,7 +35,7 @@ const PackagesCarousel: React.FC<PropType> = (props) => {
           className="w-full h-full flex touch-pan-y ml-[calc(var(--slide-spacing)*-1)]" 
           style={{ 'backface-visibility': 'hidden' } as React.CSSProperties}
         >
-          {slides.map((index) => (
+          {items?.map((item, index) => (
             <div 
               className="w-full h-full flex flex-col gap-4 relative" 
               key={index}
@@ -41,24 +48,21 @@ const PackagesCarousel: React.FC<PropType> = (props) => {
                   <Image
                     className="w-full h-full object-cover"
                     layout='fill'
-                    src={PackagesDataByIndex(index).imgSrc}
-                    alt={PackagesDataByIndex(index).imgSrc}
+                    src={item.imgSrc}
+                    alt={item.imgAlt}
                   />
                 </div>
 
                 <div className='flex-1 inline-block gap-2'>
-                  <h1 className='text-[20px] font-semibold'>{PackagesDataByIndex(index).title}</h1>
-                  <p>{PackagesDataByIndex(index).caption}</p>
+                  <h1 className='text-[20px] font-semibold'>{item.title}</h1>
+                  <p>{item.caption}</p>
                 </div>
-
             </div>
           ))}
         </div>
       </div>
     </div>
-  )
-}
+    );
+};
 
-export default PackagesCarousel;
-
-
+export default FullCarousel;

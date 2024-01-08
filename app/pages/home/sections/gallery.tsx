@@ -3,16 +3,13 @@
 import { motion } from "framer-motion";
 import { useInView } from 'react-intersection-observer';
 import { GalleryCarousel } from "../components";
-import { EmblaOptionsType } from "embla-carousel-react";
 import { UnionNavigationLink } from '../components';
- 
-const OPTIONS: EmblaOptionsType = { dragFree: true }
-const SLIDE_COUNT = 5
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
+import GalleryData from "@/app/data/gallerydata";
+
 
 const HeaderText = () => (
   <h1 className="text-[35px] leading-[45px] font-semibold">
-    We deliver detailed, touch-up free wall finishes with the highest standards. It's a promise.
+    We deliver detailed, touch-up free wall finishes with the highest standards. It&apos;s a promise.
   </h1>
 );
 
@@ -70,7 +67,9 @@ const Gallery = () => {
           animate={{opacity: inView3? 1: 0, y: inView3? 0 : 10}}
           transition={{duration: 0.5}}
           className="max-w-container w-full h-full flex flex-col items-center justify-center">
-          <GalleryCarousel slides={SLIDES} options={OPTIONS} />
+          <GalleryCarousel items={GalleryData.map(item => ({
+            ...item,
+          }))} />
         </motion.div>
       </div>
     </div>

@@ -3,10 +3,11 @@
 import { motion } from "framer-motion";
 import { useInView } from 'react-intersection-observer';
 import { FC } from "react";
-import { SpecialPaintAndPlasterCarousel, WoodsBricksPanelsCarousel, UnionNavigationLink } from "../components";
+import { FullCarousel, UnionNavigationLink } from "../components";
 import { SpecialPaintAndPlasterData } from "@/app/data/specialpaintandplasterdata";
 import { WoodsBricksAndPanellingData } from "@/app/data/woodsbricksandpanellingdata";
 import { EmblaOptionsType } from "embla-carousel-react";
+import Image from "next/image";
  
 const OPTIONS: EmblaOptionsType = { dragFree: true };
 const specialPaintAndPlasterCount = SpecialPaintAndPlasterData.length;
@@ -66,7 +67,10 @@ const IndividualPaint = () => {
 
           <CaptionDetailText content="Offering custom special effect paint and plaster, charged by square foot for precise and personal service."/>
           <UnionNavigationLink href="" color="secondary" title="View more" size="small"/>
-          <SpecialPaintAndPlasterCarousel slides={specialPaintAndPlasterSlides} options={OPTIONS} />
+          <FullCarousel items={SpecialPaintAndPlasterData.map(item => ({
+            ...item,
+            imgAlt: `${item.title} image`
+          }))} />
         </div>
 
         {/* wood, bricks and panelling */}
@@ -78,7 +82,10 @@ const IndividualPaint = () => {
 
           <CaptionDetailText content="We also provide woodwork for walls and doors, including wainscoting and panels. We also accept custom requests."/>
           <UnionNavigationLink href="" color="secondary" title="View more" size="small"/>
-          <WoodsBricksPanelsCarousel slides={woodBricksAndPanellingSlides} options={OPTIONS} />
+          <FullCarousel items={WoodsBricksAndPanellingData.map(item => ({
+            ...item,
+            imgAlt: `${item.title} image`
+          }))} />
         </div>
 
       </div>

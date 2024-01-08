@@ -1,9 +1,7 @@
 import GalleryCarousel from './gallerycarousel'
-import PackagesCarousel from './packagescarousel';
-import SpecialPaintAndPlasterCarousel from './specialpaintandplastercarousel';
-import WoodsBricksPanelsCarousel from './woodsbrickspanelscarousel';
 import GMap from './gmap';
 import UnionNavigationLink from './unionnavigationlink';
 import WhatsAppButton from './whatsappbutton';
+import FullCarousel from './fullcarousel';
 
-export { GalleryCarousel, PackagesCarousel, GMap, UnionNavigationLink, SpecialPaintAndPlasterCarousel, WoodsBricksPanelsCarousel, WhatsAppButton };
+export { GalleryCarousel, GMap, UnionNavigationLink, FullCarousel, WhatsAppButton };

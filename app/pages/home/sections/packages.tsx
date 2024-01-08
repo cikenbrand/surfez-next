@@ -2,13 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useInView } from 'react-intersection-observer';
-import { PackagesCarousel, UnionNavigationLink } from "../components";
-import { EmblaOptionsType } from "embla-carousel-react";
+import { FullCarousel, UnionNavigationLink } from "../components";
 import { PackagesData } from "@/app/data/packagesdata";
- 
-const OPTIONS: EmblaOptionsType = { dragFree: true };
-const SLIDE_COUNT = 5;
-const SLIDES = Array.from(Array(PackagesData.length).keys());
 
 const HeaderText = () => (
   <h1 className="text-[35px] leading-[45px] font-semibold">
@@ -70,7 +65,10 @@ const Packages = () => {
           animate={{opacity: inView3? 1: 0, y: inView3? 0 : 10}}
           transition={{duration: 0.5}}
           className="max-w-container w-full h-full flex flex-col items-center justify-center">
-          <PackagesCarousel slides={SLIDES} options={OPTIONS} />
+          <FullCarousel items={PackagesData.map(item => ({
+            ...item,
+            imgAlt: `${item.title} image`
+          }))} />
         </motion.div>
       </div>
     </div>
