@@ -52,8 +52,8 @@ const GMap: FC<gMapProps> = ({ lat, lng, areaRadius}) => {
     <MarkerF 
       position={mapCenter}  
       icon={{
-        url: '/vectors/mapmarker.svg', // Path to the image with your text
-        scaledSize: new google.maps.Size(200, 50), // Size of the image
+        url: '/vectors/mapmarker.svg',
+        scaledSize: new google.maps.Size(200, 50),
       }}
     />
 

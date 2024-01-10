@@ -6,13 +6,13 @@ import { FullCarousel, UnionNavigationLink } from "../components";
 import { PackagesData } from "@/app/data/packagesdata";
 
 const HeaderText = () => (
-  <h1 className="text-[35px] leading-[45px] font-semibold">
+  <h1 className="text-[35px] leading-[45px] md:text-[5rem] md:leading-[6rem] font-semibold">
     Tailored service to match your design vision. Share your ideas for a custom quote.
   </h1>
 );
 
 const CaptionText = () => (
-  <p className="text-[20px] font-medium max-w-[300px]"> 
+  <p className="text-[20px] md:text-[2rem] font-medium max-w-[500px]"> 
     We offer tailored service packages for every space.
   </p>
 );
@@ -34,9 +34,9 @@ const Packages = () => {
   });
 
   return (
-    <div className="w-full flex justify-center py-12">
-      <div className="max-w-container w-full h-full flex flex-col px-5 gap-12">
-        <div className="max-w-container w-full h-full flex flex-col items-start justify-center gap-6">
+    <div className="w-full flex justify-center py-12 md:py-36">
+      <div className="max-w-container w-full h-full flex flex-col px-5 gap-12 md:gap-16">
+        <div className="max-w-container w-full h-full flex flex-col items-start justify-center gap-6 md:gap-20">
           <motion.div 
             ref={ref1}
             className="flex-1 flex flex-row w-full h-full gap-4"
@@ -50,7 +50,7 @@ const Packages = () => {
 
           <motion.div 
             ref={ref2}
-            className="flex-1 w-full h-full flex flex-col justify-between gap-6 items-start"
+            className="flex-1 w-full h-full flex flex-col justify-between gap-6 md:gap-20 items-start"
             initial={{opacity: 0, y: 10}}
             animate={{opacity: inView2? 1: 0, y: inView2? 0 : 10}}
             transition={{duration: 0.5}}

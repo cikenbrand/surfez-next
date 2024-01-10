@@ -1,20 +1,28 @@
 .varianttwo.embla,
 .variantone.embla,
-.package.embla {
+.embla {
   overflow: hidden;
   --slide-spacing: 1rem;
-  --slide-size: 80%; /* Default size */
-  --slide-height: 25rem; /* Default height */
+  --slide-size: 80%;
 }
 
 .variantone.embla {
-  --slide-size: 90%;
   --slide-height: 100%;
+  --slide-size: 90%;
+  --slide-spacing: 1rem;
+}
+
+.varianttwo.embla {
+  --slide-height: 30rem;
 }
 
 @media (min-width: 640px) {
-  .package.embla {
+  .variantone.embla {
     --slide-size: 33%;
+  }
+
+  .varianttwo.embla {
+    --slide-height: 40rem;
   }
 }
 
@@ -39,7 +47,7 @@
 .embla__slide__img,
 .embla__parallax__img {
   display: block;
-  width: 100%; /* Adjusted for embla__parallax__img */
+  width: 100%;
   object-fit: cover;
 }
 

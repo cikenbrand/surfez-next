@@ -7,11 +7,6 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    screens: {
-      'mobile': '480px',
-      'tablet': '640px',
-      'desktop': '1024px',
-    },
     extend: {
       backgroundColor: {
         'yellow-tint': 'rgba(249,246,239,255)'

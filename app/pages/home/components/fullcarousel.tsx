@@ -22,10 +22,6 @@ const FullCarousel: FC<FullCarouselProps> = ({ items, options }) => {
     return (
       <div 
         className="variantone embla w-full h-full" 
-        style={{ 
-          '--slide-size': '90%', 
-          '--slide-height': '100%', 
-          '--slide-spacing': '1rem' } as React.CSSProperties}
       >
       <div 
         className="w-full h-full overflow-hidden" 

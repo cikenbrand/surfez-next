@@ -6,30 +6,21 @@ import { FC } from "react";
 import { FullCarousel, UnionNavigationLink } from "../components";
 import { SpecialPaintAndPlasterData } from "@/app/data/specialpaintandplasterdata";
 import { WoodsBricksAndPanellingData } from "@/app/data/woodsbricksandpanellingdata";
-import { EmblaOptionsType } from "embla-carousel-react";
-import Image from "next/image";
- 
-const OPTIONS: EmblaOptionsType = { dragFree: true };
-const specialPaintAndPlasterCount = SpecialPaintAndPlasterData.length;
-const specialPaintAndPlasterSlides = Array.from(Array(SpecialPaintAndPlasterData.length).keys());
-
-const woodsBricksAndPanellingCount = WoodsBricksAndPanellingData.length;
-const woodBricksAndPanellingSlides = Array.from(Array(WoodsBricksAndPanellingData.length).keys());
 
 const HeaderText = () => (
-  <h1 className="text-[35px] leading-[45px] font-semibold text-black">
+  <h1 className="text-[35px] leading-[45px] md:text-[5rem] md:leading-[6rem] font-semibold text-black">
     Looking for a unique touch? Choose from our individual paint finishes.
   </h1>
 );
 
 const CaptionText: FC<{ content: string }> = ({ content }) => (
-  <p className="text-[30px] leading-[40px] font-semibold text-black"> 
+  <p className="text-[30px] leading-[40px] md:text-[5rem] md:leading-[6rem] font-semibold text-black"> 
     {content}
   </p>
 );
 
 const CaptionDetailText: FC<{ content: string }> = ({ content }) => (
-  <p className="text-gray-800"> 
+  <p className="text-gray-800 md:text-[2rem] max-w-[1000px]"> 
     {content}
   </p>
 );
@@ -46,20 +37,20 @@ const IndividualPaint = () => {
   });
 
   return (
-    <div className="w-full flex justify-center py-12">
-      <div className="max-w-container w-full h-full flex flex-col px-5 gap-10">
+    <div className="w-full flex justify-center py-12 md:py-36">
+      <div className="max-w-container w-full h-full flex flex-col px-5 gap-10 md:gap-32">
         <motion.div 
-            ref={ref2}
-            className="flex-1 w-full h-full flex flex-col justify-between gap-6 items-start"
+            ref={ref1}
+            className="w-full h-full flex flex-col justify-between gap-6 items-start"
             initial={{opacity: 0, y: 10}}
-            animate={{opacity: inView2? 1: 0, y: inView2? 0 : 10}}
+            animate={{opacity: inView1? 1: 0, y: inView1? 0 : 10}}
             transition={{duration: 0.5}}
         >
           <HeaderText/>
         </motion.div >
 
         {/* special paint and plaster series */}
-        <div className="flex flex-col gap-6 items-start">
+        <div className="flex flex-col gap-6 md:gap-10 items-start">
           <div className="flex flex-row gap-4">
             <div className="w-[1px] bg-black"/>
             <CaptionText content="Special Paint and Plaster Series"/>
@@ -74,7 +65,7 @@ const IndividualPaint = () => {
         </div>
 
         {/* wood, bricks and panelling */}
-        <div className="flex flex-col gap-6 items-start">
+        <div className="flex flex-col gap-6 md:gap-10 items-start">
           <div className="flex flex-row gap-4">
           <div className="w-[1px] bg-black"/>
             <CaptionText content="Woods, bricks and panelling"/>

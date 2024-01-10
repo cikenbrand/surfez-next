@@ -8,13 +8,13 @@ import GalleryData from "@/app/data/gallerydata";
 
 
 const HeaderText = () => (
-  <h1 className="text-[35px] leading-[45px] font-semibold">
+  <h1 className="text-[35px] leading-[45px] md:text-[5rem] md:leading-[6rem] font-semibold">
     We deliver detailed, touch-up free wall finishes with the highest standards. It&apos;s a promise.
   </h1>
 );
 
 const CaptionText = () => (
-  <p className="text-[20px] font-medium max-w-[300px]"> 
+  <p className="text-[20px] md:text-[2rem] font-medium max-w-[500px]"> 
     Only the best for your walls. Nothing less.
   </p>
 );
@@ -36,9 +36,9 @@ const Gallery = () => {
   });
 
   return (
-    <div className="w-full flex justify-center py-12">
-      <div className="max-w-container w-full h-full flex flex-col px-5 gap-12">
-        <div className="max-w-container w-full h-full flex flex-col items-start justify-center gap-6">
+    <div className="w-full flex justify-center py-12 md:py-36">
+      <div className="max-w-container w-full h-full flex flex-col px-5 gap-12 md:gap-16">
+        <div className="max-w-container w-full h-full flex flex-col items-start justify-center gap-6 md:gap-20">
           <motion.div 
             ref={ref1}
             className="flex-1 flex flex-row w-full h-full gap-4"
@@ -52,7 +52,7 @@ const Gallery = () => {
 
           <motion.div 
             ref={ref2}
-            className="flex-1 w-full h-full flex flex-col justify-between gap-6 items-start"
+            className="flex-1 w-full h-full flex flex-col justify-between gap-6 md:gap-20 items-start"
             initial={{opacity: 0, y: 10}}
             animate={{opacity: inView2? 1: 0, y: inView2? 0 : 10}}
             transition={{duration: 0.5}}
@@ -66,10 +66,10 @@ const Gallery = () => {
           initial={{opacity: 0, y: 10}}
           animate={{opacity: inView3? 1: 0, y: inView3? 0 : 10}}
           transition={{duration: 0.5}}
-          className="max-w-container w-full h-full flex flex-col items-center justify-center">
-          <GalleryCarousel items={GalleryData.map(item => ({
-            ...item,
-          }))} />
+          className="max-w-container w-full h-full md:h-[60vh] flex flex-col items-center justify-center">
+            <GalleryCarousel items={GalleryData.map(item => ({
+              ...item,
+            }))} />
         </motion.div>
       </div>
     </div>

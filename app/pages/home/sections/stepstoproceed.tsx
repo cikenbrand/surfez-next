@@ -41,7 +41,7 @@ const stepsdetails = [
 ];
 
 const HeaderText = () => (
-  <h1 className="text-[35px] leading-[45px] font-semibold">
+  <h1 className="text-[35px] leading-[45px] md:text-[5rem] md:leading-[6rem] font-semibold">
     Proceed with these simple steps to get going.
   </h1>
 );
@@ -54,11 +54,11 @@ const StepAccordion:FC<{ index:number, title:string, caption:string }> = ({index
         <h2>
           <AccordionButton justifyContent='space-between'>
             <div className="flex flex-row gap-5">
-              <h1 className="text-lg font-semibold relative">
+              <h1 className="text-lg font-semibold relative md:top-[10px] md:text-[20px]">
                 {`0${index + 1}.`}
               </h1>
 
-              <h1 className="text-[20px] font-semibold text-start">
+              <h1 className="text-[20px] font-semibold text-start md:text-[35px]">
                 {title}
               </h1>
             </div>
@@ -69,7 +69,7 @@ const StepAccordion:FC<{ index:number, title:string, caption:string }> = ({index
           {/* empty shell */}
           <div className=" w-[20px] h-[30px]"/> 
           <div>
-            <p className="text-[17px]">
+            <p className="text-[17px] md:text-[25px]">
               {caption}
             </p>
           </div>
@@ -89,7 +89,7 @@ const StepsToProceed = () => {
 
   return (
     <div className="w-full flex justify-center py-12">
-      <div className="max-w-container w-full h-full flex flex-col px-5 gap-12">
+      <div className="max-w-container w-full h-full flex flex-col px-5 gap-12 md:gap-24">
         <motion.div 
           ref={ref1}
           initial={{opacity: 0, y: 10}}
