@@ -29,7 +29,8 @@ const GMap: FC<gMapProps> = ({ lat, lng, areaRadius}) => {
   );
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
+    //googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
+    googleMapsApiKey: 'AIzaSyDsAVtLSZKk_dKzlCbJhYf61ppkTIwLbeU',
     libraries: libraries as any,
   });
 
