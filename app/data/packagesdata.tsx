@@ -16,6 +16,4 @@ const PackagesData: PackagesDataProps[] = [
   { imgSrc: '/images/packages/lite_english.png', title: 'Lite English', caption: 'Normal paint + wainscoting.' },
 ];
 
-const PackagesDataByIndex = (index: number): PackagesDataProps => PackagesData[index % PackagesData.length];
-
-export { PackagesData, PackagesDataByIndex };
+export { PackagesData };

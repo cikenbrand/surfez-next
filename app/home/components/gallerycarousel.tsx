@@ -62,7 +62,7 @@ const GalleryCarousel: React.FC<GalleryCarouselProps> = ({ items, options }) => 
             <div className="embla__slide" key={index}>
               <div className="embla__parallax">
                 <div
-                  className="embla__parallax__layer"
+                  className="embla__parallax__layer rounded-md overflow-hidden"
                   style={{
                     ...(tweenValues.length && {
                       transform: `translateX(${tweenValues[index]}%)`

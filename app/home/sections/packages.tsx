@@ -34,9 +34,10 @@ const Packages = () => {
   });
 
   return (
-    <div className="w-full flex justify-center py-12 md:py-36">
+    <div className="w-full flex justify-center py-8 md:py-24">
       <div className="max-w-container w-full h-full flex flex-col px-5 gap-12 md:gap-16">
-        <div className="max-w-container w-full h-full flex flex-col items-start justify-center gap-6 md:gap-20">
+        <p className="text-gray-700 relative text-[0.9rem] md:text-[1.4rem] top-9 font-medium">02.</p>
+        <div className="max-w-container w-full h-full flex flex-col md:flex-row items-start justify-center gap-6 md:gap-20">
           <motion.div 
             ref={ref1}
             className="flex-1 flex flex-row w-full h-full gap-4"
@@ -56,7 +57,7 @@ const Packages = () => {
             transition={{duration: 0.5}}
           >
             <HeaderText/>
-            <UnionNavigationLink title="Explore more packages" href="" color="secondary"/>
+            <UnionNavigationLink title="Explore more packages" href="/packages" color="secondary"/>
           </motion.div >
         </div>
         <motion.div 

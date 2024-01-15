@@ -3,6 +3,7 @@
 import { FC } from "react";
 import useEmblaCarousel, { EmblaOptionsType } from 'embla-carousel-react';
 import Image from "next/image";
+import Link from "next/link";
 import '@/styles/emblacarousel.css';
 
 type CarouselItemType = {
@@ -40,7 +41,7 @@ const FullCarousel: FC<FullCarouselProps> = ({ items, options }) => {
                 paddingLeft: 'var(--slide-spacing)',
               }}
             >
-                <div className='w-full h-[35vh] relative'>
+                <div className='w-full h-[35vh] md:h-[38vh] relative rounded-md overflow-hidden'>
                   <Image
                     className="w-full h-full object-cover"
                     layout='fill'
@@ -49,9 +50,18 @@ const FullCarousel: FC<FullCarouselProps> = ({ items, options }) => {
                   />
                 </div>
 
-                <div className='flex-1 inline-block gap-2'>
-                  <h1 className='text-[20px] font-semibold'>{item.title}</h1>
-                  <p>{item.caption}</p>
+                <div className='flex-1 flex flex-col gap-1 items-start px-2 py-2'>
+                  <div className="w-full h-full flex flex-row gap-2">
+                    <div className="w-[1px] my-1 bg-gray-600"></div>
+                    <h1 className='text-[1.2rem] md:text-[1.4rem] font-semibold'>{item.title}</h1>
+                  </div>
+                  <div className="w-full relative left-2">
+                    <p className=" text-[1rem] md:text-[1.1rem]">{item.caption}</p>
+                  </div>
+
+                  <Link href={""} className="py-2 px-4 mt-4 bg-black relative left-2">
+                    <p className="text-white text-[1rem]">Show Details</p>
+                  </Link>
                 </div>
             </div>
           ))}

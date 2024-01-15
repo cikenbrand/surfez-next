@@ -36,9 +36,11 @@ const Gallery = () => {
   });
 
   return (
-    <div className="w-full flex justify-center py-12 md:py-36">
+    <div className="w-full flex justify-center pt-4 md:pt-16 gallery">
       <div className="max-w-container w-full h-full flex flex-col px-5 gap-12 md:gap-16">
-        <div className="max-w-container w-full h-full flex flex-col items-start justify-center gap-6 md:gap-20">
+        <p className="text-gray-700 relative text-[0.9rem] md:text-[1.4rem] top-9 font-medium">01.</p>
+
+        <div className="max-w-container w-full h-full flex flex-col md:flex-row items-start justify-center gap-6 md:gap-20">
           <motion.div 
             ref={ref1}
             className="flex-1 flex flex-row w-full h-full gap-4"

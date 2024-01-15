@@ -6,19 +6,21 @@
   --slide-size: 80%;
 }
 
+/* full */
 .variantone.embla {
   --slide-height: 100%;
   --slide-size: 90%;
   --slide-spacing: 1rem;
 }
 
+/* gallery */
 .varianttwo.embla {
   --slide-height: 30rem;
 }
 
 @media (min-width: 640px) {
   .variantone.embla {
-    --slide-size: 33%;
+    --slide-size: 30%;
   }
 
   .varianttwo.embla {

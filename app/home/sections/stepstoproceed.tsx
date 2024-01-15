@@ -88,16 +88,18 @@ const StepsToProceed = () => {
   });
 
   return (
-    <div className="w-full flex justify-center py-12">
+    <div className="w-full flex justify-center py-2">
       <div className="max-w-container w-full h-full flex flex-col px-5 gap-12 md:gap-24">
+        <p className="text-gray-700 relative text-[0.9rem] md:text-[1.4rem] top-10 md:top-14 font-medium">05.</p>
         <motion.div 
           ref={ref1}
           initial={{opacity: 0, y: 10}}
           animate={{opacity: inView1? 1: 0, y: inView1? 0 : 10}}
           transition={{duration: 0.5}}
-          className="w-full h-full"
+          className="w-full h-full flex flex-row gap-4"
 
         >
+          <div className="w-[1px] bg-black"/>
           <HeaderText/>
         </motion.div>
         <div className="max-w-container w-full flex flex-col items-center justify-center">
