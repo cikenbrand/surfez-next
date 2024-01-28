@@ -2,26 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.gallery.embla,
+.variantone.embla,
+.embla {
+  overflow: hidden;
+  --slide-spacing: 1rem;
+  --slide-size: 80%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+/* full */
+.variantone.embla {
+  --slide-height: 100%;
+  --slide-size: 90%;
+  --slide-spacing: 1rem;
+}
+
+/* gallery */
+.gallery.embla {
+  --slide-height: 30rem;
+}
+
+@media (min-width: 640px) {
+  .variantone.embla {
+    --slide-size: 30%;
+  }
+
+  .gallery.embla {
+    --slide-height: 40rem;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.embla__viewport {
+  overflow: hidden;
+}
+
+.embla__container {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+
+.embla__slide {
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+  position: relative;
+}
+
+.embla__slide__img,
+.embla__parallax__img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.embla__slide__img {
+  height: var(--slide-height);
+}
+
+.embla__parallax {
+  height: 100%;
+  overflow: hidden;
+}
+
+.embla__parallax__layer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.embla__parallax__img {
+  max-width: none;
+  width: calc(100% + (var(--slide-spacing) * 2));
+  margin-left: calc(var(--slide-spacing) * -1);
 }
